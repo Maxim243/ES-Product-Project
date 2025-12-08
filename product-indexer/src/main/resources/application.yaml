@@ -1,0 +1,13 @@
+com.griddynamics.es.graduation.project:
+  esHost: ${ES_HOST:http://localhost:9200}
+  user: ${ES_USER:}
+  pass: ${ES_PASS:}
+
+
+  index: ${ES_INDEX:product_index}
+  indices_amount: ${ES_INDICES_COUNT:3}
+
+  files:
+    mappings: classpath:products/mappings.json
+    settings: classpath:products/settings.json
+    bulkData: classpath:products/bulk_data.txt
