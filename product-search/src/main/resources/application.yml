@@ -1,0 +1,41 @@
+server:
+  port: 8081
+
+request:
+  alias: product_index
+  default:
+    defaultQuerySize: 10
+    defaultQueryPage: 0
+    getAllSize: 50
+  minQueryLength: 3
+  fuzziness:
+    startsFromLength:
+      one: 4
+      two: 6
+    boost:
+      zero: 1.0
+      one: 0.5
+      two: 0.25
+  prefixQueryBoost: 0.9
+
+products:
+  colors:
+    - green
+    - black
+    - white
+    - blue
+    - yellow
+    - red
+    - brown
+    - orange
+    - grey
+
+  sizes:
+    - xxs
+    - xs
+    - s
+    - m
+    - l
+    - xl
+    - xxl
+    - xxxl
