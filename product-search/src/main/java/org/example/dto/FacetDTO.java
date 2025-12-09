@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Map;
 
 @Builder
-public record FacetDTO(Map<String, List<FacetBucketDTO>> facetsDTO) {
+public record FacetDTO(Map<String, List<FacetBucketDTO>> facetBucketDTO) {
 }

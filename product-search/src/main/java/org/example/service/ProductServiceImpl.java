@@ -4,18 +4,17 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationRange;
-
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.util.NamedValue;
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.example.config.ProductAttributesProperties;
 import org.example.dto.ProductDTO;
 import org.example.dto.ProductRequestDTO;
 import org.example.dto.ProductResponseDTO;
+import org.example.mappers.ProductMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.example.dto.ProductResponseDTO.buildEmptyProductResponseDTO;
@@ -44,9 +44,15 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductAttributesProperties productAttributesProperties;
 
+    private final ProductMapper productMapper;
+
+    private final String CHEAP = "Cheap";
+    private final String AVERAGE = "Average";
+    private final String EXPENSIVE = "Expensive";
+
     @Override
     public ProductResponseDTO getSearchProductResponse(ProductRequestDTO productRequestDTO) throws IOException {
-        if (productRequestDTO.queryText().isEmpty()) {
+        if (Objects.isNull(productRequestDTO.queryText())) {
             return buildEmptyProductResponseDTO();
         }
         String textQueryInput = productRequestDTO.queryText().toLowerCase();
@@ -64,24 +70,23 @@ public class ProductServiceImpl implements ProductService {
             mainQueriesList.add(buildColorQuery(productAttributesProperties.getColors()));
         }
 
-        searchProducts(productRequestDTO, mainQueriesList);
+        SearchResponse<ProductDTO> searchResponse = searchProducts(productRequestDTO, mainQueriesList);
 
-
-        return null;
+        return productMapper.toProductResponseDTO(searchResponse);
     }
 
-    private void searchProducts(ProductRequestDTO productRequestDTO, List<Query> mainQueriesList) throws IOException {
-        SearchResponse<ProductDTO> productDTOSearchResponse = elasticsearchClient.search(s -> s
+    private SearchResponse<ProductDTO> searchProducts(ProductRequestDTO productRequestDTO, List<Query> mainQueriesList) throws IOException {
+        return elasticsearchClient.search(s -> s
                         .index(alias)
                         .from(productRequestDTO.from(defaultFindByQuerySize, defaultQueryPage))
-                        .size(defaultFindByQuerySize)
+                        .size(productRequestDTO.getValidatedSize(defaultFindByQuerySize))
                         .query(q -> q
                                 .disMax(dm -> dm
                                         .tieBreaker(0.7d)
                                         .queries(mainQueriesList)
                                 )
                         )
-                        .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)))   // _score DESC
+                        .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)))
                         .aggregations("brand", brand -> brand
                                 .terms(term -> term
                                         .field("brand.keyword")
@@ -94,9 +99,9 @@ public class ProductServiceImpl implements ProductService {
                                 .range(r -> r
                                         .field("price")
                                         .ranges(
-                                                AggregationRange.of(rb -> rb.to(100.0).key("Cheap")),
-                                                AggregationRange.of(rb -> rb.from(100.0).to(500.0).key("Average")),
-                                                AggregationRange.of(rb -> rb.from(500.0).key("Expensive"))
+                                                AggregationRange.of(rb -> rb.to(100.0).key(CHEAP)),
+                                                AggregationRange.of(rb -> rb.from(100.0).to(500.0).key(AVERAGE)),
+                                                AggregationRange.of(rb -> rb.from(500.0).key(EXPENSIVE))
                                         )
                                 )
                         )
