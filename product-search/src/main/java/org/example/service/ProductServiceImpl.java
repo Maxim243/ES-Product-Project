@@ -61,14 +61,7 @@ public class ProductServiceImpl implements ProductService {
         List<Query> mainQueriesList = new ArrayList<>();
         mainQueriesList.add(buildBrandAndNameCrossFieldsQuery(excludeColorAndSizeQueryString));
         mainQueriesList.add(buildBrandAndNameBestFieldsQuery(excludeColorAndSizeQueryString));
-
-        if (!getSizesFromQuery(textQueryInput).isEmpty()) {
-            mainQueriesList.add(buildSizeQuery(productAttributesProperties.getSizes()));
-        }
-
-        if (!getColorsFromQuery(textQueryInput).isEmpty()) {
-            mainQueriesList.add(buildColorQuery(productAttributesProperties.getColors()));
-        }
+        mainQueriesList.add(buildSkuQuery(textQueryInput));
 
         SearchResponse<ProductDTO> searchResponse = searchProducts(productRequestDTO, mainQueriesList);
 
@@ -114,7 +107,7 @@ public class ProductServiceImpl implements ProductService {
         return Query.of(q -> q
                 .multiMatch(mm -> mm
                         .query(queryText)
-                        .fields("brand.text", "name.text")
+                        .fields("brand", "name")
                         .type(TextQueryType.CrossFields)
                         .operator(Operator.And)
                         .boost(1.0f)
@@ -126,46 +119,53 @@ public class ProductServiceImpl implements ProductService {
         return Query.of(q -> q
                 .multiMatch(mm -> mm
                         .query(queryText)
-                        .fields("brand.shingles^5", "name.shingles^5")
+                        .fields("brand.shingles^5", "name.shingles^7")
+                        .operator(Operator.And)
                         .type(TextQueryType.BestFields)
                 ));
     }
 
-    private Query buildSizeQuery(List<String> sizes) {
-        List<FieldValue> sizeValues = sizes.stream()
+    private Query buildSkuQuery(String textInputQuery) {
+        List<FieldValue> sizeValues = Arrays.stream(textInputQuery.split("\\s+"))
+                .filter(productAttributesProperties.getSizes()::contains)
                 .map(FieldValue::of)
                 .toList();
 
-        return Query.of(q -> q
-                .functionScore(fs -> fs
-                        .query(t -> t
-                                .terms(term -> term
-                                        .field("skus.size")
-                                        .terms(v -> v.value(sizeValues))
-                                )
-                        )
-                        .functions(f -> f.weight(2.0))
-                )
-        );
-    }
-
-    private Query buildColorQuery(List<String> colors) {
-        List<FieldValue> colorValues = colors.stream()
+        List<FieldValue> colorValues = Arrays.stream(textInputQuery.split("\\s+"))
+                .filter(productAttributesProperties.getColors()::contains)
                 .map(FieldValue::of)
                 .toList();
 
-        return Query.of(q -> q
-                .functionScore(fs -> fs
-                        .query(t -> t
-                                .terms(term -> term
-                                        .field("skus.color")
-                                        .terms(v -> v.value(colorValues))
-                                )
-                        )
-                        .functions(f -> f.weight(2.0))
-                )
-        );
+        if (sizeValues.isEmpty() && colorValues.isEmpty()) {
+            return Query.of(q -> q.matchNone(mn -> mn));
+        }
+
+        return Query.of(q -> q.nested(n -> n
+                .path("skus")
+                .query(nq -> nq.bool(b -> {
+                    List<Query> shouldQueries = new ArrayList<>();
+                    if (!sizeValues.isEmpty() && !colorValues.isEmpty()) {
+                        shouldQueries.add(Query.of(inner -> inner.bool(bb -> bb
+                                .must(Query.of(inner2 -> inner2.terms(t -> t.field("skus.size").terms(v -> v.value(sizeValues)))))
+                                .must(Query.of(inner2 -> inner2.terms(t -> t.field("skus.color").terms(v -> v.value(colorValues)))))
+                                .boost(3.0f)
+                        )));
+                    }
+
+                    if (!sizeValues.isEmpty()) {
+                        shouldQueries.add(Query.of(inner -> inner.terms(t -> t.field("skus.size").terms(v -> v.value(sizeValues)))));
+                    }
+                    if (!colorValues.isEmpty()) {
+                        shouldQueries.add(Query.of(inner -> inner.terms(t -> t.field("skus.color").terms(v -> v.value(colorValues)))));
+                    }
+                    b.should(shouldQueries);
+                    b.minimumShouldMatch(String.valueOf(1));
+                    return b;
+                }))
+        ));
     }
+
+
 
     private String excludeColorAndSizeFromQuery(String queryText) {
         queryText = queryText.toLowerCase();
@@ -174,17 +174,5 @@ public class ProductServiceImpl implements ProductService {
                 .filter(token -> !productAttributesProperties.getColors().contains(token))
                 .filter(token -> !productAttributesProperties.getSizes().contains(token))
                 .collect(Collectors.joining(" "));
-    }
-
-    private List<String> getColorsFromQuery(String queryText) {
-        return Arrays.stream(queryText.split("\\s+"))
-                .filter(token -> productAttributesProperties.getColors().contains(token))
-                .toList();
-    }
-
-    private List<String> getSizesFromQuery(String queryText) {
-        return Arrays.stream(queryText.split("\\s+"))
-                .filter(token -> productAttributesProperties.getSizes().contains(token))
-                .toList();
     }
 }

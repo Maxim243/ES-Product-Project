@@ -27,6 +27,14 @@
         ]
       }
     },
+    "normalizer": {
+      "lowercase_normalizer": {
+        "type": "custom",
+        "filter": [
+          "lowercase"
+        ]
+      }
+    },
     "filter": {
       "shingle_filter": {
         "type": "shingle",

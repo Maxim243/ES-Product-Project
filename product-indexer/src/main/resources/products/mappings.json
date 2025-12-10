@@ -31,10 +31,12 @@
       "type": "nested",
       "properties": {
         "color": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "lowercase_normalizer"
         },
         "size": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "lowercase_normalizer"
         }
       }
     }

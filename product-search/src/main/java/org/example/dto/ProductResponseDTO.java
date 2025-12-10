@@ -14,7 +14,10 @@ public record ProductResponseDTO(Long totalHits,
         return ProductResponseDTO.builder()
                 .totalHits(0L)
                 .productDTOList(Collections.emptyList())
-                .facetDTO(FacetDTO.builder().build())
+                .facetDTO(FacetDTO
+                        .builder()
+                        .facetBucketDTO(Collections.emptyMap())
+                        .build())
                 .build();
     }
 }
