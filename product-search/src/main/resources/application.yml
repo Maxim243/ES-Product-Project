@@ -1,37 +1,31 @@
 server:
   port: 8081
 
-request:
-  alias: product_index
-  default:
+elasticsearch:
+  request:
     defaultQuerySize: 10
     defaultQueryPage: 0
     getAllSize: 50
-  minQueryLength: 3
-  fuzziness:
-    boost:
-      zero: 1.0
-      one: 0.5
-      two: 0.25
-
-products:
-  colors:
-    - green
-    - black
-    - white
-    - blue
-    - yellow
-    - red
-    - brown
-    - orange
-    - grey
-
-  sizes:
-    - xxs
-    - xs
-    - s
-    - m
-    - l
-    - xl
-    - xxl
-    - xxxl
+  fields:
+    name: name
+    brand: brand
+    nameShingles: name.shingles
+    brandKeyword: brand.keyword
+    price: price
+    keyword: keyword
+  aggregation:
+    count: _count
+    key: _key
+    cheap: Cheap
+    average: Average
+    expensive: Expensive
+    priceRanges: price_ranges
+    brandCount: brand_count
+    cheapPrice: 100.0
+    expensivePrice: 500.0
+  index:
+    productIndex: product_index
+    conceptIndex: concept_index
+    searchTerms: search_terms
+  nested:
+    skus: skus

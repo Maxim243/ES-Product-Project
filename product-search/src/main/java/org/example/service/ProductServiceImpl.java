@@ -4,23 +4,22 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationRange;
-import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
+import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.util.NamedValue;
 import lombok.RequiredArgsConstructor;
-import org.example.config.ProductAttributesProperties;
+import org.example.config.EsFieldsConfig;
+import org.example.dto.ConceptDocDTO;
 import org.example.dto.ProductDTO;
 import org.example.dto.ProductRequestDTO;
 import org.example.dto.ProductResponseDTO;
 import org.example.mappers.ProductMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -31,70 +30,68 @@ import static org.example.dto.ProductResponseDTO.buildEmptyProductResponseDTO;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Value("${request.default.defaultQuerySize}")
-    private Integer defaultFindByQuerySize;
-
-    @Value("${request.default.defaultQueryPage}")
-    private Integer defaultQueryPage;
-
-    @Value("${request.alias}")
-    private String alias;
-
     private final ElasticsearchClient elasticsearchClient;
 
-    private final ProductAttributesProperties productAttributesProperties;
+    private final EsFieldsConfig esFieldsConfig;
 
     private final ProductMapper productMapper;
-
-    private final String CHEAP = "Cheap";
-    private final String AVERAGE = "Average";
-    private final String EXPENSIVE = "Expensive";
 
     @Override
     public ProductResponseDTO getSearchProductResponse(ProductRequestDTO productRequestDTO) throws IOException {
         if (Objects.isNull(productRequestDTO.queryText())) {
             return buildEmptyProductResponseDTO();
         }
-        String textQueryInput = productRequestDTO.queryText().toLowerCase();
-        String excludeColorAndSizeQueryString = excludeColorAndSizeFromQuery(textQueryInput);
+        List<Query> filterQueries = new ArrayList<>();
+        List<Query> mustQueries = new ArrayList<>();
+        List<Query> shouldQuery = new ArrayList<>();
 
-        List<Query> mainQueriesList = new ArrayList<>();
-        mainQueriesList.add(buildBrandAndNameCrossFieldsQuery(excludeColorAndSizeQueryString));
-        mainQueriesList.add(buildBrandAndNameBestFieldsQuery(excludeColorAndSizeQueryString));
-        mainQueriesList.add(buildSkuQuery(textQueryInput));
+        List<String> textQueryInputTerms = List.of(productRequestDTO.queryText().toLowerCase().split(" "));
 
-        SearchResponse<ProductDTO> searchResponse = searchProducts(productRequestDTO, mainQueriesList);
+        SearchResponse<ConceptDocDTO> conceptDocSearchResponse = getConceptDocSearchResponse(textQueryInputTerms);
 
-        return productMapper.toProductResponseDTO(searchResponse);
+        List<ConceptDocDTO> conceptDocDTOList = conceptDocSearchResponse.hits()
+                .hits()
+                .stream()
+                .map(Hit::source)
+                .filter(Objects::nonNull)
+                .toList();
+
+        String productNameFieldTokens = extractProductNameFieldTokens(textQueryInputTerms, conceptDocDTOList);
+
+        Query mainQuery = buildMainQuery(
+                addFiltersToQuery(conceptDocDTOList, filterQueries),
+                addMustQueries(productNameFieldTokens, mustQueries, esFieldsConfig.getFields().getName()),
+                addShouldQueries(productNameFieldTokens, shouldQuery, esFieldsConfig.getFields().getNameShingles())
+        );
+
+        SearchResponse<ProductDTO> productDTOSearchResponse = searchProducts(productRequestDTO, mainQuery);
+
+        return productMapper.toProductResponseDTO(productDTOSearchResponse);
     }
 
-    private SearchResponse<ProductDTO> searchProducts(ProductRequestDTO productRequestDTO, List<Query> mainQueriesList) throws IOException {
+    private SearchResponse<ProductDTO> searchProducts(ProductRequestDTO productRequestDTO, Query mainQuery) throws IOException {
         return elasticsearchClient.search(s -> s
-                        .index(alias)
-                        .from(productRequestDTO.from(defaultFindByQuerySize, defaultQueryPage))
-                        .size(productRequestDTO.getValidatedSize(defaultFindByQuerySize))
-                        .query(q -> q
-                                .disMax(dm -> dm
-                                        .tieBreaker(0.7d)
-                                        .queries(mainQueriesList)
-                                )
-                        )
+                        .index(esFieldsConfig.getIndex().getProductIndex())
+                        .from(productRequestDTO.from(esFieldsConfig.getRequest().getDefaultQuerySize(), esFieldsConfig.getRequest().getDefaultQueryPage()))
+                        .size(productRequestDTO.getValidatedSize(esFieldsConfig.getRequest().getDefaultQuerySize()))
+                        .query(mainQuery)
                         .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)))
-                        .aggregations("brand", brand -> brand
+                        .aggregations(esFieldsConfig.getFields().getBrand(), brand -> brand
                                 .terms(term -> term
-                                        .field("brand.keyword")
-                                        .size(10)
+                                        .field(esFieldsConfig.getFields().getBrandKeyword())
+                                        .size(productRequestDTO.getValidatedSize(esFieldsConfig.getRequest().getDefaultQuerySize()))
                                         .order(List.of(
-                                                NamedValue.of("_count", SortOrder.Desc),
-                                                NamedValue.of("_key", SortOrder.Asc)
+                                                NamedValue.of(esFieldsConfig.getAggregation().getCount(), SortOrder.Desc),
+                                                NamedValue.of(esFieldsConfig.getAggregation().getKey(), SortOrder.Asc)
                                         ))))
-                        .aggregations("price_ranges", a -> a
+                        .aggregations(esFieldsConfig.getAggregation().getPriceRanges(), a -> a
                                 .range(r -> r
-                                        .field("price")
+                                        .field(esFieldsConfig.getFields().getPrice())
                                         .ranges(
-                                                AggregationRange.of(rb -> rb.to(100.0).key(CHEAP)),
-                                                AggregationRange.of(rb -> rb.from(100.0).to(500.0).key(AVERAGE)),
-                                                AggregationRange.of(rb -> rb.from(500.0).key(EXPENSIVE))
+                                                AggregationRange.of(rb -> rb.to(esFieldsConfig.getAggregation().getCheapPrice()).key(esFieldsConfig.getAggregation().getCheap())),
+                                                AggregationRange.of(rb -> rb.from(esFieldsConfig.getAggregation().getCheapPrice()).to(esFieldsConfig.getAggregation().getExpensivePrice())
+                                                        .key(esFieldsConfig.getAggregation().getAverage())),
+                                                AggregationRange.of(rb -> rb.from(esFieldsConfig.getAggregation().getExpensivePrice()).key(esFieldsConfig.getAggregation().getExpensive()))
                                         )
                                 )
                         )
@@ -103,76 +100,104 @@ public class ProductServiceImpl implements ProductService {
         );
     }
 
-    private Query buildBrandAndNameCrossFieldsQuery(String queryText) {
-        return Query.of(q -> q
-                .multiMatch(mm -> mm
-                        .query(queryText)
-                        .fields("brand", "name")
-                        .type(TextQueryType.CrossFields)
-                        .operator(Operator.And)
-                        .boost(1.0f)
+    private SearchResponse<ConceptDocDTO> getConceptDocSearchResponse(List<String> textQueryInputTerms) throws IOException {
+        Query termsQuery = Query.of(q -> q
+                .terms(t -> t
+                        .field(esFieldsConfig.getIndex().getSearchTerms())
+                        .terms(TermsQueryField.of(f -> f
+                                .value(textQueryInputTerms.stream().map(FieldValue::of).toList())
+                        ))
                 )
+        );
+
+        return elasticsearchClient.search(
+                s -> s
+                        .index(esFieldsConfig.getIndex().getConceptIndex())
+                        .query(termsQuery),
+                ConceptDocDTO.class
         );
     }
 
-    private Query buildBrandAndNameBestFieldsQuery(String queryText) {
-        return Query.of(q -> q
-                .multiMatch(mm -> mm
-                        .query(queryText)
-                        .fields("brand.shingles^5", "name.shingles^7")
-                        .operator(Operator.And)
-                        .type(TextQueryType.BestFields)
-                ));
+    private Query buildMainQuery(List<Query> filterQueries, List<Query> mustQueries, List<Query> shouldQueries) {
+        return Query.of(q -> q.bool(b -> {
+            if (!filterQueries.isEmpty()) {
+                b.filter(filterQueries);
+            }
+            if (!mustQueries.isEmpty()) {
+                b.must(mustQueries);
+            }
+            if (!shouldQueries.isEmpty()) {
+                b.should(shouldQueries);
+            }
+            return b;
+        }));
     }
 
-    private Query buildSkuQuery(String textInputQuery) {
-        List<FieldValue> sizeValues = Arrays.stream(textInputQuery.split("\\s+"))
-                .filter(productAttributesProperties.getSizes()::contains)
-                .map(FieldValue::of)
+    private List<Query> addMustQueries(String productNameFieldTokens, List<Query> mustQueries, String fieldName) {
+        if (!productNameFieldTokens.isBlank()) {
+            mustQueries.add(Query.of(q -> q
+                    .match(m -> m
+                            .field(fieldName)
+                            .query(productNameFieldTokens)
+                    )
+            ));
+        }
+        return mustQueries;
+    }
+
+    private List<Query> addShouldQueries(String productNameFieldTokens, List<Query> shouldQueries, String fieldName) {
+        if (!productNameFieldTokens.isBlank()) {
+            shouldQueries.add(Query.of(q -> q
+                    .matchPhrase(mp -> mp
+                            .field(fieldName)
+                            .query(productNameFieldTokens)
+                            .boost(5.0f)
+                    )
+            ));
+        }
+        return shouldQueries;
+    }
+
+    private List<Query> addFiltersToQuery(List<ConceptDocDTO> conceptDocDTOList, List<Query> filterQueries) {
+        conceptDocDTOList.stream()
+                .filter(fieldToTermDTO -> !fieldToTermDTO.type().startsWith(esFieldsConfig.getNested().getSkus()))
+                .map(fieldToTermDTO -> Query.of(q -> q
+                        .term(t -> t
+                                .field(String.format("%s.%s", fieldToTermDTO.type(), esFieldsConfig.getFields().getKeyword()))
+                                .value(fieldToTermDTO.originalTerm())
+                        )
+                ))
+                .forEach(filterQueries::add);
+
+        List<Query> nestedSkuQueries = conceptDocDTOList.stream()
+                .filter(conceptDocDTO -> conceptDocDTO.type().startsWith(esFieldsConfig.getNested().getSkus()))
+                .map(filteredConcept -> Query.of(q -> q
+                        .term(t -> t
+                                .field(filteredConcept.type())
+                                .value(filteredConcept.originalTerm())
+                        )
+                ))
                 .toList();
 
-        List<FieldValue> colorValues = Arrays.stream(textInputQuery.split("\\s+"))
-                .filter(productAttributesProperties.getColors()::contains)
-                .map(FieldValue::of)
-                .toList();
-
-        if (sizeValues.isEmpty() && colorValues.isEmpty()) {
-            return Query.of(q -> q.matchNone(mn -> mn));
+        if (!nestedSkuQueries.isEmpty()) {
+            filterQueries.add(Query.of(q -> q
+                    .nested(n -> n
+                            .path(esFieldsConfig.getNested().getSkus())
+                            .query(q2 -> q2.bool(b -> b.filter(nestedSkuQueries)))
+                    )
+            ));
         }
 
-        return Query.of(q -> q.nested(n -> n
-                .path("skus")
-                .query(nq -> nq.bool(b -> {
-                    List<Query> shouldQueries = new ArrayList<>();
-                    if (!sizeValues.isEmpty() && !colorValues.isEmpty()) {
-                        shouldQueries.add(Query.of(inner -> inner.bool(bb -> bb
-                                .must(Query.of(inner2 -> inner2.terms(t -> t.field("skus.size").terms(v -> v.value(sizeValues)))))
-                                .must(Query.of(inner2 -> inner2.terms(t -> t.field("skus.color").terms(v -> v.value(colorValues)))))
-                                .boost(3.0f)
-                        )));
-                    }
-
-                    if (!sizeValues.isEmpty()) {
-                        shouldQueries.add(Query.of(inner -> inner.terms(t -> t.field("skus.size").terms(v -> v.value(sizeValues)))));
-                    }
-                    if (!colorValues.isEmpty()) {
-                        shouldQueries.add(Query.of(inner -> inner.terms(t -> t.field("skus.color").terms(v -> v.value(colorValues)))));
-                    }
-                    b.should(shouldQueries);
-                    b.minimumShouldMatch(String.valueOf(1));
-                    return b;
-                }))
-        ));
+        return filterQueries;
     }
 
-
-
-    private String excludeColorAndSizeFromQuery(String queryText) {
-        queryText = queryText.toLowerCase();
-
-        return Arrays.stream(queryText.split("\\s+"))
-                .filter(token -> !productAttributesProperties.getColors().contains(token))
-                .filter(token -> !productAttributesProperties.getSizes().contains(token))
+    private String extractProductNameFieldTokens(List<String> textQueryInputTerms, List<ConceptDocDTO> conceptDocDTOList) {
+        return textQueryInputTerms.stream()
+                .filter(textInputToken ->
+                        conceptDocDTOList.stream()
+                                .filter(Objects::nonNull)
+                                .noneMatch(conceptDocDTO ->
+                                        conceptDocDTO.searchTerms().contains(textInputToken)))
                 .collect(Collectors.joining(" "));
     }
 }
