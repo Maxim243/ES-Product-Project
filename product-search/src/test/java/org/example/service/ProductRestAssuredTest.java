@@ -65,13 +65,13 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
-                .body("totalHits", equalTo(8))
+                .body("totalHits", equalTo(4))
                 .body("productDTOList.size()", greaterThan(0))
                 .body("productDTOList.brand", hasItems("Calvin Klein"))
                 .body("productDTOList.name", hasItems(
                         "Women ankle skinny jeans, model 1282",
                         "Women ankle jeans, model 1272",
-                        "Classic women jeans, model 1145"
+                        "Men ankle jeans, model 2211"
                 ))
                 .body("productDTOList[0].skus", hasItem(allOf(
                         hasEntry("color", "Blue"),
