@@ -52,8 +52,8 @@ public class ProductRestAssuredTest {
     void testSearchProductsByTextAndSku() {
         String requestBody = """
                 {
-                    "queryText": "Calvin klein L blue ankle skinny jeans",
-                    "size": "3"
+                    "queryText": "Levi's tommy jacket Blue L",
+                    "size": "2"
                 }
                 """;
 
@@ -65,13 +65,12 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
-                .body("totalHits", equalTo(4))
+                .body("totalHits", equalTo(2))
                 .body("productDTOList.size()", greaterThan(0))
-                .body("productDTOList.brand", hasItems("Calvin Klein"))
+                .body("productDTOList.brand", hasItems("Levi's"))
                 .body("productDTOList.name", hasItems(
-                        "Women ankle skinny jeans, model 1282",
-                        "Women ankle jeans, model 1272",
-                        "Men ankle jeans, model 2211"
+                        "denim trucker jacket",
+                        "sherpa lined jacket"
                 ))
                 .body("productDTOList[0].skus", hasItem(allOf(
                         hasEntry("color", "Blue"),
@@ -87,8 +86,7 @@ public class ProductRestAssuredTest {
                 .contentType("application/json")
                 .body("""
                         {
-                            "queryText": "jeans",
-                            "size": "3"
+                            "queryText": "jacket"
                         }
                         """)
                 .when()
@@ -99,13 +97,14 @@ public class ProductRestAssuredTest {
                 .response();
 
         List<Map<String, Object>> priceRanges = response.jsonPath().getList("facetDTO.facetBucketDTO.price_ranges");
-        assertEquals(2, priceRanges.stream().filter(p -> "Cheap".equals(p.get("value"))).findFirst().get().get("count"));
-        assertEquals(6, priceRanges.stream().filter(p -> "Average".equals(p.get("value"))).findFirst().get().get("count"));
+        assertEquals(4, priceRanges.stream().filter(p -> "Cheap".equals(p.get("value"))).findFirst().get().get("count"));
+        assertEquals(5, priceRanges.stream().filter(p -> "Average".equals(p.get("value"))).findFirst().get().get("count"));
         assertEquals(0, priceRanges.stream().filter(p -> "Expensive".equals(p.get("value"))).findFirst().get().get("count"));
 
         List<Map<String, Object>> brands = response.jsonPath().getList("facetDTO.facetBucketDTO.brand");
-        assertEquals(4, brands.stream().filter(b -> "Calvin Klein".equals(b.get("value"))).findFirst().get().get("count"));
-        assertEquals(4, brands.stream().filter(b -> "Levi's".equals(b.get("value"))).findFirst().get().get("count"));
+        assertEquals(2, brands.stream().filter(b -> "Adidas".equals(b.get("value"))).findFirst().get().get("count"));
+        assertEquals(2, brands.stream().filter(b -> "Levi's".equals(b.get("value"))).findFirst().get().get("count"));
+        assertEquals(2, brands.stream().filter(b -> "Nike".equals(b.get("value"))).findFirst().get().get("count"));
     }
 
 
