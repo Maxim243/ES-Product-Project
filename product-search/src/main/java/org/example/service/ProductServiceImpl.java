@@ -3,20 +3,20 @@ package org.example.service;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationRange;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.util.NamedValue;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.config.EsFieldsConfig;
 import org.example.dto.ConceptDocDTO;
 import org.example.dto.ProductDTO;
 import org.example.dto.ProductRequestDTO;
 import org.example.dto.ProductResponseDTO;
 import org.example.mappers.ProductMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,9 +25,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.example.dto.ProductResponseDTO.buildEmptyProductResponseDTO;
+import static org.example.utils.QueryUtil.buildMainFilters;
+import static org.example.utils.QueryUtil.buildNestedFilters;
+import static org.example.utils.QueryUtil.addBrandAggregation;
+import static org.example.utils.QueryUtil.addPriceRangeAggregation;
 
-@Component
+@Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ElasticsearchClient elasticsearchClient;
@@ -63,6 +68,8 @@ public class ProductServiceImpl implements ProductService {
                 addMustQueries(productNameFieldTokens, mustQueries, esFieldsConfig.getFields().getName()),
                 addShouldQueries(productNameFieldTokens, shouldQuery, esFieldsConfig.getFields().getNameShingles())
         );
+        log.info("mainQuery: {}", mainQuery);
+
 
         SearchResponse<ProductDTO> productDTOSearchResponse = searchProducts(productRequestDTO, mainQuery);
 
@@ -70,38 +77,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private SearchResponse<ProductDTO> searchProducts(ProductRequestDTO productRequestDTO, Query mainQuery) throws IOException {
-        return elasticsearchClient.search(s -> s
-                        .index(esFieldsConfig.getIndex().getProductIndex())
-                        .from(productRequestDTO.from(esFieldsConfig.getRequest().getDefaultQuerySize(), esFieldsConfig.getRequest().getDefaultQueryPage()))
-                        .size(productRequestDTO.getValidatedSize(esFieldsConfig.getRequest().getDefaultQuerySize()))
-                        .query(mainQuery)
-                        .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)))
-                        .aggregations(esFieldsConfig.getFields().getBrand(), brand -> brand
-                                .terms(term -> term
-                                        .field(esFieldsConfig.getFields().getBrandKeyword())
-                                        .size(productRequestDTO.getValidatedSize(esFieldsConfig.getRequest().getDefaultQuerySize()))
-                                        .order(List.of(
-                                                NamedValue.of(esFieldsConfig.getAggregation().getCount(), SortOrder.Desc),
-                                                NamedValue.of(esFieldsConfig.getAggregation().getKey(), SortOrder.Asc)
-                                        ))))
-                        .aggregations(esFieldsConfig.getAggregation().getPriceRanges(), a -> a
-                                .range(r -> r
-                                        .field(esFieldsConfig.getFields().getPrice())
-                                        .ranges(
-                                                AggregationRange.of(rb -> rb.to(esFieldsConfig.getAggregation().getCheapPrice()).key(esFieldsConfig.getAggregation().getCheap())),
-                                                AggregationRange.of(rb -> rb.from(esFieldsConfig.getAggregation().getCheapPrice()).to(esFieldsConfig.getAggregation().getExpensivePrice())
-                                                        .key(esFieldsConfig.getAggregation().getAverage())),
-                                                AggregationRange.of(rb -> rb.from(esFieldsConfig.getAggregation().getExpensivePrice()).key(esFieldsConfig.getAggregation().getExpensive()))
-                                        )
-                                )
-                        )
-                ,
-                ProductDTO.class
-        );
+        SearchRequest.Builder searchBuilder = new SearchRequest.Builder()
+                .index(esFieldsConfig.getIndex().getProductIndex())
+                .from(productRequestDTO.from(esFieldsConfig.getRequest().getDefaultQuerySize(), esFieldsConfig.getRequest().getDefaultQueryPage()))
+                .size(productRequestDTO.getValidatedSize(esFieldsConfig.getRequest().getDefaultQuerySize()))
+                .query(mainQuery)
+                .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)));
+
+        addBrandAggregation(searchBuilder, productRequestDTO, esFieldsConfig);
+        addPriceRangeAggregation(searchBuilder, esFieldsConfig);
+
+        return elasticsearchClient.search(searchBuilder.build(), ProductDTO.class);
     }
 
     private SearchResponse<ConceptDocDTO> getConceptDocSearchResponse(List<String> textQueryInputTerms) throws IOException {
-        Query termsQuery = Query.of(q -> q
+        Query conceptTermsQuery = Query.of(q -> q
                 .terms(t -> t
                         .field(esFieldsConfig.getIndex().getSearchTerms())
                         .terms(TermsQueryField.of(f -> f
@@ -110,12 +100,18 @@ public class ProductServiceImpl implements ProductService {
                 )
         );
 
-        return elasticsearchClient.search(
+        log.info("conceptTermsQuery: {}", conceptTermsQuery);
+
+        SearchResponse<ConceptDocDTO> conceptSearchResponse = elasticsearchClient.search(
                 s -> s
                         .index(esFieldsConfig.getIndex().getConceptIndex())
-                        .query(termsQuery),
+                        .query(conceptTermsQuery),
                 ConceptDocDTO.class
         );
+
+        log.info("conceptSearchResponse: {}", conceptSearchResponse);
+
+        return conceptSearchResponse;
     }
 
     private Query buildMainQuery(List<Query> filterQueries, List<Query> mustQueries, List<Query> shouldQueries) {
@@ -159,34 +155,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private List<Query> addFiltersToQuery(List<ConceptDocDTO> conceptDocDTOList, List<Query> filterQueries) {
-        conceptDocDTOList.stream()
-                .filter(fieldToTermDTO -> !fieldToTermDTO.type().startsWith(esFieldsConfig.getNested().getSkus()))
-                .map(fieldToTermDTO -> Query.of(q -> q
-                        .term(t -> t
-                                .field(String.format("%s.%s", fieldToTermDTO.type(), esFieldsConfig.getFields().getKeyword()))
-                                .value(fieldToTermDTO.originalTerm())
-                        )
-                ))
-                .forEach(filterQueries::add);
-
-        List<Query> nestedSkuQueries = conceptDocDTOList.stream()
-                .filter(conceptDocDTO -> conceptDocDTO.type().startsWith(esFieldsConfig.getNested().getSkus()))
-                .map(filteredConcept -> Query.of(q -> q
-                        .term(t -> t
-                                .field(filteredConcept.type())
-                                .value(filteredConcept.originalTerm())
-                        )
-                ))
-                .toList();
-
-        if (!nestedSkuQueries.isEmpty()) {
-            filterQueries.add(Query.of(q -> q
-                    .nested(n -> n
-                            .path(esFieldsConfig.getNested().getSkus())
-                            .query(q2 -> q2.bool(b -> b.filter(nestedSkuQueries)))
-                    )
-            ));
-        }
+        buildMainFilters(conceptDocDTOList, filterQueries, esFieldsConfig);
+        buildNestedFilters(conceptDocDTOList, filterQueries, esFieldsConfig);
 
         return filterQueries;
     }
