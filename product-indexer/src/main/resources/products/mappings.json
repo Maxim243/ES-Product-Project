@@ -27,6 +27,10 @@
     "price": {
       "type": "float"
     },
+    "name_vector": {
+      "type": "dense_vector",
+      "dims": 3072
+    },
     "skus": {
       "type": "nested",
       "properties": {
