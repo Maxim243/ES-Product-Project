@@ -135,6 +135,7 @@ public class ProductServiceImpl implements ProductService {
                     .match(m -> m
                             .field(fieldName)
                             .query(productNameFieldTokens)
+                            .boost(2.0f)
                     )
             ));
         }
