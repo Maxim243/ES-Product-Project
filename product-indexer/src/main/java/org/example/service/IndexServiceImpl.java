@@ -2,13 +2,7 @@ package org.example.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.io.Resources;
-import com.openai.client.OpenAIClient;
-import com.openai.models.embeddings.Embedding;
-import com.openai.models.embeddings.EmbeddingCreateParams;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.Charsets;
 import org.elasticsearch.ElasticsearchException;
@@ -29,9 +23,10 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.cluster.metadata.AliasMetaData;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.example.config.EsFieldsConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,29 +40,37 @@ import java.util.Map;
 
 import static io.micrometer.common.util.StringUtils.isNotEmpty;
 
-@Service
+@Component
 @Slf4j
-@RequiredArgsConstructor
 public class IndexServiceImpl implements IndexService {
 
-    private final RestHighLevelClient esClient;
+    @Autowired
+    private RestHighLevelClient esClient;
 
-    private final OpenAIClient openAIClient;
+    @Value("${com.griddynamics.es.graduation.project.index}")
+    private String aliasName;
 
-    private final EsFieldsConfig esFieldsConfig;
+    @Value("${com.griddynamics.es.graduation.project.files.mappings:classpath:elastic/typeaheads/mappings.json}")
+    private Resource typeaheadsMappingsFile;
+
+    @Value("${com.griddynamics.es.graduation.project.files.settings:classpath:elastic/typeaheads/settings.json}")
+    private Resource typeaheadsSettingsFile;
+
+    @Value("${com.griddynamics.es.graduation.project.files.bulkData:classpath:elastic/typeaheads/bulk_data.txt}")
+    private Resource typeaheadsBulkInsertDataFile;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void createIndex() throws IOException {
-        String generatedUniqueIndexName = generateUniqueIndexName(esFieldsConfig.getIndex().getIndexName());
+        String generatedUniqueIndexName = generateUniqueIndexName(aliasName);
 
-        String settings = getStrFromResource(esFieldsConfig.getFile().getSettings());
-        String mappings = getStrFromResource(esFieldsConfig.getFile().getMappings());
+        String settings = getStrFromResource(typeaheadsSettingsFile);
+        String mappings = getStrFromResource(typeaheadsMappingsFile);
         createIndex(generatedUniqueIndexName, settings, mappings);
 
         updateIndexAlias(generatedUniqueIndexName);
-        processBulkInsertData(esFieldsConfig.getFile().getBulkData());
+        processBulkInsertData(typeaheadsBulkInsertDataFile);
         esClient.indices().refresh(new RefreshRequest(generatedUniqueIndexName), RequestOptions.DEFAULT);
     }
 
@@ -104,8 +107,6 @@ public class IndexServiceImpl implements IndexService {
     }
 
     private void removeAliasesAction(IndicesAliasesRequest indicesAliasesRequest) throws IOException {
-        String aliasName = esFieldsConfig.getIndex().getIndexName();
-
         GetAliasesResponse response = esClient.indices().getAlias(
                 new GetAliasesRequest(aliasName), RequestOptions.DEFAULT);
 
@@ -132,10 +133,11 @@ public class IndexServiceImpl implements IndexService {
         IndicesAliasesRequest.AliasActions addAction =
                 new IndicesAliasesRequest.AliasActions(IndicesAliasesRequest.AliasActions.Type.ADD)
                         .index(generatedUniqueIndexName)
-                        .alias(esFieldsConfig.getIndex().getIndexName());
+                        .alias(aliasName);
 
         indicesAliasesRequest.addAliasAction(addAction);
     }
+
 
 
     private String generateUniqueIndexName(String generalName) {
@@ -188,59 +190,41 @@ public class IndexServiceImpl implements IndexService {
             throw new RuntimeException(ex);
         }
     }
-
     private IndexRequest createIndexRequestFromBulkData(String line1, String line2) {
-        String name = esFieldsConfig.getFields().getName();
         DocWriteRequest.OpType opType = null;
         String esIndexName = null;
         String esId = null;
+        boolean isOk = true;
 
         try {
             String esOpType = objectMapper.readTree(line1).fieldNames().next();
             opType = DocWriteRequest.OpType.fromString(esOpType);
 
-            JsonNode indexJsonNode = objectMapper.readTree(line1).iterator().next().get(esFieldsConfig.getIndex().getIndex());
-            esIndexName = (indexJsonNode != null ? indexJsonNode.textValue() : esFieldsConfig.getIndex().getIndexName());
+            JsonNode indexJsonNode = objectMapper.readTree(line1).iterator().next().get("_index");
+            esIndexName = (indexJsonNode != null ? indexJsonNode.textValue() : aliasName);
 
-            JsonNode idJsonNode = objectMapper.readTree(line1).iterator().next().get(esFieldsConfig.getFields().getId());
+            JsonNode idJsonNode = objectMapper.readTree(line1).iterator().next().get("_id");
             esId = (idJsonNode != null ? idJsonNode.textValue() : null);
         } catch (IOException | IllegalArgumentException ex) {
             log.warn("An exception occurred during parsing action_and_metadata line in the bulk data file:\n{}\nwith a message:\n{}", line1, ex.getMessage());
+            isOk = false;
         }
 
         try {
-            ObjectNode sourceNode = (ObjectNode) objectMapper.readTree(line2);
+            objectMapper.readTree(line2);
+        } catch (IOException ex) {
+            log.warn("An exception occurred during parsing source line in the bulk data file:\n{}\nwith a message:\n{}", line2, ex.getMessage());
+            isOk = false;
+        }
 
-            if (sourceNode.has(name)) {
-                String productName = sourceNode.get(name).asText();
-
-                List<Float> embedding = createEmbedding(productName);
-
-                ArrayNode vectorNode = objectMapper.createArrayNode();
-                embedding.forEach(vectorNode::add);
-
-                sourceNode.set(esFieldsConfig.getFields().getNameVector(), vectorNode);
-            }
-
+        if (isOk) {
             return new IndexRequest(esIndexName)
                     .id(esId)
                     .opType(opType)
-                    .source(sourceNode.toString(), XContentType.JSON);
-
-        } catch (IOException | IllegalArgumentException e) {
-            log.warn("Failed to parse or enrich document: {}", line2, e);
+                    .source(line2, XContentType.JSON);
+        } else {
             return null;
         }
-    }
-
-    private List<Float> createEmbedding(String textToCreateVectors) {
-        EmbeddingCreateParams params = EmbeddingCreateParams.builder()
-                .model(esFieldsConfig.getOpenAI().getEmbeddingModel())
-                .input(textToCreateVectors)
-                .build();
-
-        List<Embedding> embeddings = openAIClient.embeddings().create(params).data();
-        return embeddings.get(0).embedding();
     }
 
 
