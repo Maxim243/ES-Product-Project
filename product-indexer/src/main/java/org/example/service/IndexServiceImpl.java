@@ -52,8 +52,6 @@ public class IndexServiceImpl implements IndexService {
 
     private final RestHighLevelClient esClient;
 
-    private final OpenAIClient openAIClient;
-
     private final EsFieldsConfig esFieldsConfig;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -190,7 +188,6 @@ public class IndexServiceImpl implements IndexService {
     }
 
     private IndexRequest createIndexRequestFromBulkData(String line1, String line2) {
-        String name = esFieldsConfig.getFields().getName();
         DocWriteRequest.OpType opType = null;
         String esIndexName = null;
         String esId = null;
@@ -209,38 +206,15 @@ public class IndexServiceImpl implements IndexService {
         }
 
         try {
-            ObjectNode sourceNode = (ObjectNode) objectMapper.readTree(line2);
-
-            if (sourceNode.has(name)) {
-                String productName = sourceNode.get(name).asText();
-
-                List<Float> embedding = createEmbedding(productName);
-
-                ArrayNode vectorNode = objectMapper.createArrayNode();
-                embedding.forEach(vectorNode::add);
-
-                sourceNode.set(esFieldsConfig.getFields().getNameVector(), vectorNode);
-            }
-
             return new IndexRequest(esIndexName)
                     .id(esId)
                     .opType(opType)
-                    .source(sourceNode.toString(), XContentType.JSON);
+                    .source(line2, XContentType.JSON);
 
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             log.warn("Failed to parse or enrich document: {}", line2, e);
             return null;
         }
-    }
-
-    private List<Float> createEmbedding(String textToCreateVectors) {
-        EmbeddingCreateParams params = EmbeddingCreateParams.builder()
-                .model(esFieldsConfig.getOpenAI().getEmbeddingModel())
-                .input(textToCreateVectors)
-                .build();
-
-        List<Embedding> embeddings = openAIClient.embeddings().create(params).data();
-        return embeddings.get(0).embedding();
     }
 
 

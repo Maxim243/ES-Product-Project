@@ -9,7 +9,9 @@ import lombok.experimental.UtilityClass;
 import org.example.config.EsFieldsConfig;
 import org.example.dto.ConceptDocDTO;
 import org.example.dto.ProductRequestDTO;
+import org.example.enums.QueryType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -67,7 +69,7 @@ public class QueryUtil {
                                     .query(q2 -> q2
                                             .bool(b -> b
                                                     .filter(f ->
-                                                            f.bool(sb -> sb.should(nestedSkuQueries))
+                                                            f.bool(sb -> sb.must(nestedSkuQueries))
                                                     )
                                             )
                                     )
@@ -121,6 +123,56 @@ public class QueryUtil {
                         )
                 )
         );
+    }
+
+    public List<Query> createMustQuery(String productNameFieldTokens, String fieldName) {
+        List<Query> mustQueries = new ArrayList<>();
+
+        if (!productNameFieldTokens.isBlank()) {
+            mustQueries.add(Query.of(q -> q.match(m -> m.field(fieldName).query(productNameFieldTokens).boost(2.0f))));
+        }
+        return mustQueries;
+    }
+
+    public List<Query> createShouldQuery(String productNameFieldTokens, String fieldName) {
+        List<Query> shouldQuery = new ArrayList<>();
+
+        if (!productNameFieldTokens.isBlank()) {
+            shouldQuery.add(Query.of(q -> q.matchPhrase(mp -> mp.field(fieldName).query(productNameFieldTokens).boost(5.0f))));
+        }
+        return shouldQuery;
+    }
+
+    public List<Query> createFilterQuery(List<ConceptDocDTO> conceptDocDTOList, EsFieldsConfig esFieldsConfig) {
+        List<Query> filterQueries = new ArrayList<>();
+
+        buildMainFilters(conceptDocDTOList, filterQueries, esFieldsConfig);
+        buildNestedFilters(conceptDocDTOList, filterQueries, esFieldsConfig);
+
+        return filterQueries;
+    }
+
+    public Query buildQueryByStrategy(QueryType queryType, List<Query> filter, List<Query> must, List<Query> should) {
+        return switch (queryType) {
+            case STRICT -> buildQuery(filter, must, should);
+            case NO_FILTERS -> buildQuery(List.of(), must, should);
+            case SHOULD_ONLY -> buildQuery(List.of(), List.of(), should);
+        };
+    }
+
+    private Query buildQuery(List<Query> filterQueries, List<Query> mustQueries, List<Query> shouldQueries) {
+        return Query.of(q -> q.bool(b -> {
+            if (!filterQueries.isEmpty()) {
+                b.filter(filterQueries);
+            }
+            if (!mustQueries.isEmpty()) {
+                b.must(mustQueries);
+            }
+            if (!shouldQueries.isEmpty()) {
+                b.should(shouldQueries);
+            }
+            return b;
+        }));
     }
 
 }
