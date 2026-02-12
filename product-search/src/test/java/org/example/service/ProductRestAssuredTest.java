@@ -1,6 +1,7 @@
 package org.example.service;
 
 import io.restassured.response.Response;
+import org.example.enums.SearchMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -30,30 +31,19 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
+                .body("message", equalTo(SearchMessage.NO_RESULTS.getMessage()))
                 .body("totalHits", equalTo(0))
                 .body("productDTOList", hasSize(0))
+                .body("facetDTO.facetBucketDTO", anEmptyMap())
                 .body("facetDTO.facetBucketDTO", anEmptyMap());
     }
 
     @Test
     void testNonExistingTextQuery() {
-        given()
-                .port(port)
-                .contentType("application/json")
-                .body("{\"query\":\"nonexistingbrand nonexistingproduct\"}")
-                .when()
-                .post(URL)
-                .then()
-                .statusCode(200)
-                .body("totalHits", equalTo(0));
-    }
 
-    @Test
-    void testSearchProductsByTextAndSku() {
         String requestBody = """
                 {
-                    "queryText": "Levi's tommy jacket Blue L",
-                    "size": "2"
+                    "queryText": "nonexistingbrand nonexistingproduct"
                 }
                 """;
 
@@ -65,17 +55,64 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
-                .body("totalHits", equalTo(2))
+                .body("message", equalTo(SearchMessage.NO_RESULTS.getMessage()))
+                .body("totalHits", equalTo(0));
+    }
+
+    @Test
+    void testStrictSearchByTextAndSku() {
+        String requestBody = """
+                {
+                    "queryText": "puma shorts black L"
+                }
+                """;
+
+        given()
+                .port(port)
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(URL)
+                .then()
+                .statusCode(200)
+                .body("message", equalTo(SearchMessage.STRICT_SUCCESS.getMessage()))
+                .body("totalHits", equalTo(1))
                 .body("productDTOList.size()", greaterThan(0))
-                .body("productDTOList.brand", hasItems("Levi's"))
+                .body("productDTOList.brand", hasItems("Puma"))
                 .body("productDTOList.name", hasItems(
-                        "denim trucker jacket",
-                        "sherpa lined jacket"
+                        "nylon hiking shorts"
                 ))
                 .body("productDTOList[0].skus", hasItem(allOf(
-                        hasEntry("color", "Blue"),
+                        hasEntry("color", "Black"),
                         hasEntry("size", "L")
                 )));
+    }
+
+    @Test
+    void testNoFiltersSearchByTextAndSku() {
+        String requestBody = """
+                {
+                    "queryText": "puma shorts blue L"
+                }
+                """;
+
+        given()
+                .port(port)
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(URL)
+                .then()
+                .statusCode(200)
+                .body("message", equalTo(SearchMessage.FILTERS_REMOVED.getMessage()))
+                .body("totalHits", equalTo(4))
+                .body("productDTOList.size()", greaterThan(0))
+                .body("productDTOList.name", hasItems(
+                        "nylon hiking shorts",
+                        "dri-fit running shorts",
+                        "cotton chino shorts",
+                        "cotton sleep shorts"
+                ));
     }
 
 
