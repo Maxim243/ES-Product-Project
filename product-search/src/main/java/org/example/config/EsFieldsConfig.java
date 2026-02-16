@@ -9,11 +9,20 @@ import org.springframework.stereotype.Component;
 @Data
 public class EsFieldsConfig {
 
+    private Property property;
     private Request request;
     private Fields fields;
     private Aggregation aggregation;
     private Index index;
     private Nested nested;
+    private OpenAI openAI;
+
+    @Data
+    public static class Property {
+        private String esHost;
+        private String user;
+        private String password;
+    }
 
     @Data
     public static class Request {
@@ -27,6 +36,7 @@ public class EsFieldsConfig {
         private String name;
         private String nameShingles;
         private String brandKeyword;
+        private String categoryKeyword;
         private String price;
         private String brand;
         private String keyword;
@@ -55,5 +65,12 @@ public class EsFieldsConfig {
     @Data
     public static class Nested {
         private String skus;
+    }
+
+    @Data
+    public static class OpenAI {
+        private String version;
+        private Double temperature;
+        private Integer maxTokens;
     }
 }

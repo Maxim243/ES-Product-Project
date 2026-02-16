@@ -1,100 +1,100 @@
 {"create": {"_id": "9"}}
-{"brand": "Nike", "name": "cotton t-shirt sport", "price": 34.99, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Nike", "name": "cotton t-shirt sport", "price": 34.99, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}], "category": "t-shirt"}
 {"create": {"_id": "10"}}
-{"brand": "Nike", "name": "tech fleece jogger pants", "price": 110.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Nike", "name": "tech fleece jogger pants", "price": 110.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}], "category": "pants"}
 {"create": {"_id": "11"}}
-{"brand": "Nike", "name": "windrunner hooded jacket", "price": 95.50, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Red", "size": "M"}, {"color": "Red", "size": "L"}]}
+{"brand": "Nike", "name": "windrunner hooded jacket", "price": 95.50, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Red", "size": "M"}, {"color": "Red", "size": "L"}], "category": "jacket"}
 {"create": {"_id": "12"}}
-{"brand": "Adidas", "name": "polyester track pants", "price": 55.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Adidas", "name": "polyester track pants", "price": 55.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}], "category": "pants"}
 {"create": {"_id": "13"}}
-{"brand": "Adidas", "name": "cotton graphic tee", "price": 29.99, "skus": [{"color": "White", "size": "XS"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Black", "size": "M"}]}
+{"brand": "Adidas", "name": "cotton graphic tee", "price": 29.99, "skus": [{"color": "White", "size": "XS"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Black", "size": "M"}], "category": "t-shirt"}
 {"create": {"_id": "14"}}
-{"brand": "Adidas", "name": "insulated winter jacket", "price": 180.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Black", "size": "XXL"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}]}
+{"brand": "Adidas", "name": "insulated winter jacket", "price": 180.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Black", "size": "XXL"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}], "category": "jacket"}
 {"create": {"_id": "15"}}
-{"brand": "Zara", "name": "linen blend summer shirt", "price": 49.90, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Black", "size": "M"}]}
+{"brand": "Zara", "name": "linen blend summer shirt", "price": 49.90, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Black", "size": "M"}], "category": "shirt"}
 {"create": {"_id": "16"}}
-{"brand": "Zara", "name": "wool oversized coat", "price": 159.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Zara", "name": "wool oversized coat", "price": 159.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}], "category": "coat"}
 {"create": {"_id": "17"}}
-{"brand": "Zara", "name": "denim slim fit jeans", "price": 59.90, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Zara", "name": "denim slim fit jeans", "price": 59.90, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}], "category": "jeans"}
 {"create": {"_id": "18"}}
-{"brand": "Tommy Hilfiger", "name": "organic cotton polo", "price": 89.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "Red", "size": "S"}, {"color": "Red", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "organic cotton polo", "price": 89.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "Red", "size": "S"}, {"color": "Red", "size": "M"}], "category": "polo"}
 {"create": {"_id": "19"}}
-{"brand": "Tommy Hilfiger", "name": "chino stretch pants", "price": 119.00, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}]}
+{"brand": "Tommy Hilfiger", "name": "chino stretch pants", "price": 119.00, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}], "category": "pants"}
 {"create": {"_id": "20"}}
-{"brand": "Tommy Hilfiger", "name": "nylon puffer vest", "price": 145.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "nylon puffer vest", "price": 145.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}], "category": "vest"}
 {"create": {"_id": "21"}}
-{"brand": "Puma", "name": "recycled polyester fleece", "price": 129.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Puma", "name": "recycled polyester fleece", "price": 129.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}], "category": "fleece"}
 {"create": {"_id": "22"}}
-{"brand": "Puma", "name": "organic cotton cargo pants", "price": 99.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Puma", "name": "organic cotton cargo pants", "price": 99.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}], "category": "pants"}
 {"create": {"_id": "23"}}
-{"brand": "Puma", "name": "torrentshell rain jacket", "price": 149.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Puma", "name": "torrentshell rain jacket", "price": 149.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}], "category": "jacket"}
 {"create": {"_id": "24"}}
-{"brand": "Nike", "name": "dri-fit running shorts", "price": 45.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Nike", "name": "dri-fit running shorts", "price": 45.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}], "category": "shorts"}
 {"create": {"_id": "25"}}
-{"brand": "Nike", "name": "jersey long sleeve top", "price": 55.00, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Nike", "name": "jersey long sleeve top", "price": 55.00, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}], "category": "top"}
 {"create": {"_id": "26"}}
-{"brand": "Adidas", "name": "fleece essential hoodie", "price": 65.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Adidas", "name": "fleece essential hoodie", "price": 65.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}], "category": "hoodie"}
 {"create": {"_id": "27"}}
-{"brand": "Zara", "name": "silk feel blouse", "price": 45.50, "skus": [{"color": "White", "size": "XS"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "Black", "size": "S"}, {"color": "Blue", "size": "S"}]}
+{"brand": "Zara", "name": "silk feel blouse", "price": 45.50, "skus": [{"color": "White", "size": "XS"}, {"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "Black", "size": "S"}, {"color": "Blue", "size": "S"}], "category": "blouse"}
 {"create": {"_id": "28"}}
-{"brand": "Nike", "name": "cotton training socks", "price": 18.00, "skus": [{"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Nike", "name": "cotton training socks", "price": 18.00, "skus": [{"color": "White","size":"M"},{"color":"White","size":"L"},{"color":"Black","size":"M"},{"color":"Black","size":"L"}], "category": "socks"}
 {"create": {"_id": "29"}}
-{"brand": "Levi's", "name": "denim trucker jacket", "price": 98.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Levi's", "name": "denim trucker jacket", "price": 98.00, "skus": [{"color": "Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Blue","size":"XL"},{"color":"Black","size":"M"},{"color":"Black","size":"L"}], "category": "jacket"}
 {"create": {"_id": "30"}}
-{"brand": "Tommy Hilfiger", "name": "leather belt", "price": 45.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Tommy Hilfiger", "name": "leather belt", "price": 45.00, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"}], "category": "accessory"}
 {"create": {"_id": "31"}}
-{"brand": "Adidas", "name": "mesh breathable tank", "price": 30.00, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Adidas", "name": "mesh breathable tank", "price": 30.00, "skus": [{"color":"White","size":"S"},{"color":"White","size":"M"},{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Blue","size":"M"}], "category": "tank"}
 {"create": {"_id": "32"}}
-{"brand": "Nike", "name": "nylon track jacket", "price": 85.00, "skus": [{"color": "Red", "size": "S"}, {"color": "Red", "size": "M"}, {"color": "Red", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Nike", "name": "nylon track jacket", "price": 85.00, "skus": [{"color":"Red","size":"S"},{"color":"Red","size":"M"},{"color":"Red","size":"L"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"L"}], "category": "jacket"}
 {"create": {"_id": "33"}}
-{"brand": "Zara", "name": "cotton chino shorts", "price": 35.90, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "White", "size": "M"}]}
+{"brand": "Zara", "name": "cotton chino shorts", "price": 35.90, "skus": [{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Black","size":"M"},{"color":"White","size":"M"}], "category": "shorts"}
 {"create": {"_id": "34"}}
-{"brand": "Puma", "name": "hemp canvas work pants", "price": 110.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Puma", "name": "hemp canvas work pants", "price": 110.00, "skus": [{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Black","size":"XL"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"}], "category": "pants"}
 {"create": {"_id": "35"}}
-{"brand": "Adidas", "name": "recycled primegreen jersey", "price": 70.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "White", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Adidas", "name": "recycled primegreen jersey", "price": 70.00, "skus": [{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"White","size":"M"},{"color":"Red","size":"M"}], "category": "t-shirt"}
 {"create": {"_id": "36"}}
-{"brand": "Tommy Hilfiger", "name": "wool blend sweater", "price": 125.00, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Red", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "wool blend sweater", "price": 125.00, "skus": [{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Blue","size":"XL"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Red","size":"M"}], "category": "sweater"}
 {"create": {"_id": "37"}}
-{"brand": "Nike", "name": "pro compression tights", "price": 50.00, "skus": [{"color": "Black", "size": "XS"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Nike", "name": "pro compression tights", "price": 50.00, "skus": [{"color":"Black","size":"XS"},{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"M"}], "category": "socks"}
 {"create": {"_id": "38"}}
-{"brand": "Zara", "name": "poplin button down shirt", "price": 39.90, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Zara", "name": "poplin button down shirt", "price": 39.90, "skus": [{"color":"White","size":"S"},{"color":"White","size":"M"},{"color":"White","size":"L"},{"color":"Blue","size":"S"},{"color":"Blue","size":"M"}], "category": "shirt"}
 {"create": {"_id": "39"}}
-{"brand": "Puma", "name": "down sweater jacket", "price": 279.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Puma", "name": "down sweater jacket", "price": 279.00, "skus": [{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"}], "category": "jacket"}
 {"create": {"_id": "40"}}
-{"brand": "Levi's", "name": "corduroy straight pants", "price": 89.50, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Levi's", "name": "corduroy straight pants", "price": 89.50, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"}], "category": "pants"}
 {"create": {"_id": "41"}}
-{"brand": "Adidas", "name": "cotton 3-stripe tee", "price": 35.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "White", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Adidas", "name": "cotton 3-stripe tee", "price": 35.00, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"White","size":"M"},{"color":"Red","size":"M"}], "category": "t-shirt"}
 {"create": {"_id": "42"}}
-{"brand": "Nike", "name": "therma-fit gym hoodie", "price": 75.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Nike", "name": "therma-fit gym hoodie", "price": 75.00, "skus": [{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Black","size":"XL"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"}], "category": "hoodie"}
 {"create": {"_id": "43"}}
-{"brand": "Tommy Hilfiger", "name": "denim skirt", "price": 79.00, "skus": [{"color": "Blue", "size": "XS"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "denim skirt", "price": 79.00, "skus": [{"color":"Blue","size":"XS"},{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Black","size":"S"},{"color":"Black","size":"M"}], "category": "skirt"}
 {"create": {"_id": "44"}}
-{"brand": "Zara", "name": "faux leather jacket", "price": 99.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}]}
+{"brand": "Zara", "name": "faux leather jacket", "price": 99.00, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Black","size":"XL"}], "category": "jacket"}
 {"create": {"_id": "45"}}
-{"brand": "Puma", "name": "organic cotton beanie", "price": 35.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Puma", "name": "organic cotton beanie", "price": 35.00, "skus": [{"color":"Black","size":"M"},{"color":"Blue","size":"M"},{"color":"Red","size":"M"}], "category": "accessory"}
 {"create": {"_id": "46"}}
-{"brand": "Nike", "name": "cotton sweatpants luxury", "price": 85.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "M"}, {"color": "White", "size": "M"}]}
+{"brand": "Nike", "name": "cotton sweatpants luxury", "price": 85.00, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"M"},{"color":"White","size":"M"}], "category": "pants"}
 {"create": {"_id": "47"}}
-{"brand": "Adidas", "name": "padded bomber jacket", "price": 130.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Adidas", "name": "padded bomber jacket", "price": 130.00, "skus": [{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Black","size":"XL"},{"color":"Blue","size":"L"}], "category": "jacket"}
 {"create": {"_id": "48"}}
-{"brand": "Levi's", "name": "sherpa lined jacket", "price": 128.00, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Blue", "size": "XL"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}]}
+{"brand": "Levi's", "name": "sherpa lined jacket", "price": 128.00, "skus": [{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Blue","size":"XL"},{"color":"Black","size":"M"},{"color":"Black","size":"L"}], "category": "jacket"}
 {"create": {"_id": "49"}}
-{"brand": "Tommy Hilfiger", "name": "cotton sleep shorts", "price": 39.00, "skus": [{"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "cotton sleep shorts", "price": 39.00, "skus": [{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Black","size":"M"},{"color":"Red","size":"M"}], "category": "shorts"}
 {"create": {"_id": "50"}}
-{"brand": "Zara", "name": "viscose floral dress", "price": 69.90, "skus": [{"color": "Red", "size": "XS"}, {"color": "Red", "size": "S"}, {"color": "Red", "size": "M"}, {"color": "Black", "size": "S"}, {"color": "Blue", "size": "S"}]}
+{"brand": "Zara", "name": "viscose floral dress", "price": 69.90, "skus": [{"color":"Red","size":"XS"},{"color":"Red","size":"S"},{"color":"Red","size":"M"},{"color":"Black","size":"S"},{"color":"Blue","size":"S"}], "category": "dress"}
 {"create": {"_id": "51"}}
-{"brand": "Puma", "name": "nylon hiking shorts", "price": 65.00, "skus": [{"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Puma", "name": "nylon hiking shorts", "price": 65.00, "skus": [{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"S"},{"color":"Blue","size":"M"}], "category": "shorts"}
 {"create": {"_id": "52"}}
-{"brand": "Nike", "name": "polyester dri-fit polo", "price": 55.00, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}, {"color": "Red", "size": "M"}]}
+{"brand": "Nike", "name": "polyester dri-fit polo", "price": 55.00, "skus": [{"color":"White","size":"S"},{"color":"White","size":"M"},{"color":"White","size":"L"},{"color":"Black","size":"M"},{"color":"Blue","size":"M"},{"color":"Red","size":"M"}], "category": "polo"}
 {"create": {"_id": "53"}}
-{"brand": "Adidas", "name": "canvas gym bag", "price": 40.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Adidas", "name": "canvas gym bag", "price": 40.00, "skus": [{"color":"Black","size":"M"},{"color":"Blue","size":"M"}], "category": "accessory"}
 {"create": {"_id": "54"}}
-{"brand": "Zara", "name": "cotton blend knit sweater", "price": 55.00, "skus": [{"color": "White", "size": "S"}, {"color": "White", "size": "M"}, {"color": "White", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Zara", "name": "cotton blend knit sweater", "price": 55.00, "skus": [{"color":"White","size":"S"},{"color":"White","size":"M"},{"color":"White","size":"L"},{"color":"Black","size":"M"},{"color":"Blue","size":"M"}], "category": "sweater"}
 {"create": {"_id": "55"}}
-{"brand": "Tommy Hilfiger", "name": "leather wallet", "price": 55.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Blue", "size": "M"}]}
+{"brand": "Tommy Hilfiger", "name": "leather wallet", "price": 55.00, "skus": [{"color":"Black","size":"M"},{"color":"Blue","size":"M"}], "category": "accessory"}
 {"create": {"_id": "56"}}
-{"brand": "Nike", "name": "cotton crewneck sweatshirt", "price": 60.00, "skus": [{"color": "Blue", "size": "S"}, {"color": "Blue", "size": "M"}, {"color": "Blue", "size": "L"}, {"color": "Black", "size": "M"}, {"color": "White", "size": "M"}]}
+{"brand": "Nike", "name": "cotton crewneck sweatshirt", "price": 60.00, "skus": [{"color":"Blue","size":"S"},{"color":"Blue","size":"M"},{"color":"Blue","size":"L"},{"color":"Black","size":"M"},{"color":"White","size":"M"}], "category": "sweatshirt"}
 {"create": {"_id": "57"}}
-{"brand": "Puma", "name": "recycled nylon parka", "price": 349.00, "skus": [{"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Black", "size": "XL"}, {"color": "Blue", "size": "L"}]}
+{"brand": "Puma", "name": "recycled nylon parka", "price": 349.00, "skus": [{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Black","size":"XL"},{"color":"Blue","size":"L"}], "category": "coat"}
 {"create": {"_id": "58"}}
-{"brand": "Adidas", "name": "sport cotton leggings", "price": 45.00, "skus": [{"color": "Black", "size": "XS"}, {"color": "Black", "size": "S"}, {"color": "Black", "size": "M"}, {"color": "Black", "size": "L"}, {"color": "Blue", "size": "S"}]}
+{"brand": "Adidas", "name": "sport cotton socks", "price": 45.00, "skus": [{"color":"Black","size":"XS"},{"color":"Black","size":"S"},{"color":"Black","size":"M"},{"color":"Black","size":"L"},{"color":"Blue","size":"S"}], "category": "socks"}

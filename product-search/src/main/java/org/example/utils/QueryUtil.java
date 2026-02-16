@@ -152,12 +152,33 @@ public class QueryUtil {
         return filterQueries;
     }
 
-    public Query buildQueryByStrategy(QueryType queryType, List<Query> filter, List<Query> must, List<Query> should) {
+    public Query buildQueryByStrategy(QueryType queryType, List<Query> filterList, List<Query> must, List<Query> should, EsFieldsConfig esFieldsConfig) {
         return switch (queryType) {
-            case STRICT -> buildQuery(filter, must, should);
-            case NO_FILTERS -> buildQuery(List.of(), must, should);
-            case SHOULD_ONLY -> buildQuery(List.of(), List.of(), should);
+            case STRICT -> buildQuery(filterList, must, should);
+            case CATEGORY_ONLY_STRICT_MATCH -> buildQuery(buildCategoryFilterOnly(filterList, esFieldsConfig), must, should);
+            case AI_SEARCH -> buildQueryForAICandidates(buildCategoryFilterOnly(filterList, esFieldsConfig));
         };
+    }
+
+    public List<Query> buildCategoryFilterOnly(List<Query> filterList, EsFieldsConfig esFieldsConfig) {
+        return filterList.stream()
+                .filter(Query::isBool)
+                .flatMap(q -> q.bool().should().stream())
+                .filter(Query::isTerm)
+                .filter(q -> esFieldsConfig.getFields().getCategoryKeyword().equals(q.term().field()))
+                .toList();
+    }
+
+    public Query buildQueryForAICandidates(List<Query> filters){
+        if (filters.isEmpty()) {
+            return new Query.Builder()
+                    .matchAll(m -> m)
+                    .build();
+        }
+
+        return new Query.Builder()
+                .bool(b -> b.filter(filters))
+                .build();
     }
 
     private Query buildQuery(List<Query> filterQueries, List<Query> mustQueries, List<Query> shouldQueries) {

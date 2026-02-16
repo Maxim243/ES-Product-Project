@@ -13,13 +13,11 @@ public class EsFieldsConfig {
     private Property property;
     private Index index;
     private File file;
-    private OpenAI openAI;
 
     @Data
     public static class Fields {
         private String name;
         private String id;
-        private String nameVector;
     }
 
     @Data
@@ -41,10 +39,5 @@ public class EsFieldsConfig {
         private Resource mappings;
         private Resource settings;
         private Resource bulkData;
-    }
-
-    @Data
-    public static class OpenAI {
-        private String embeddingModel;
     }
 }

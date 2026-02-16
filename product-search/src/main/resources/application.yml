@@ -2,6 +2,10 @@ server:
   port: 8081
 
 elasticsearch:
+  property:
+    esHost: ${ES_HOST:http://localhost:9200}
+    user: ${ES_USER:}
+    password: ${ES_PASS:}
   request:
     defaultQuerySize: 10
     defaultQueryPage: 0
@@ -11,6 +15,7 @@ elasticsearch:
     brand: brand
     nameShingles: name.shingles
     brandKeyword: brand.keyword
+    categoryKeyword: category.keyword
     price: price
     keyword: keyword
   aggregation:
@@ -29,3 +34,7 @@ elasticsearch:
     searchTerms: search_terms
   nested:
     skus: skus
+  openAI:
+     version: gpt-4o-mini
+     temperature: 0.0
+     maxTokens: 200
