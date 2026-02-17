@@ -9,7 +9,6 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,23 +16,19 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class ElasticsearchConfig {
 
-    @Value("${com.griddynamics.es.graduation.project.esHost}")
-    private String esHost;
-
-    @Value("${com.griddynamics.es.graduation.project.user}")
-    private String user;
-
-    @Value("${com.griddynamics.es.graduation.project.pass}")
-    private String pass;
+    private final EsFieldsConfig esFieldsConfig;
 
     @Bean
     public ElasticsearchClient elasticsearchClient() {
+        String user = esFieldsConfig.getProperty().getUser();
+        String password = esFieldsConfig.getProperty().getPassword();
+        String esHost = esFieldsConfig.getProperty().getEsHost();
 
         RestClientBuilder builder = RestClient.builder(org.apache.http.HttpHost.create(esHost));
 
-        if (user != null && !user.isBlank() && pass != null && !pass.isBlank()) {
+        if (user != null && !user.isBlank() && password != null && !password.isBlank()) {
             final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-            credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(user, pass));
+            credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(user, password));
             builder.setHttpClientConfigCallback(httpClientBuilder ->
                     httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
             );

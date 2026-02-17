@@ -2,7 +2,6 @@ elasticsearch:
   fields:
     name: name
     id: _id
-    nameVector: name_vector
   property:
     esHost: ${ES_HOST:http://localhost:9200}
     user: ${ES_USER:}
@@ -15,5 +14,3 @@ elasticsearch:
     mappings: classpath:products/mappings.json
     settings: classpath:products/settings.json
     bulkData: classpath:products/bulk_data.txt
-  openAI:
-    embeddingModel: text-embedding-3-large

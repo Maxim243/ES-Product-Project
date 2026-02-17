@@ -75,7 +75,7 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
-                .body("message", equalTo(SearchMessage.STRICT_SUCCESS.getMessage()))
+                .body("message", equalTo(SearchMessage.SEARCH_SUCCESS.getMessage()))
                 .body("totalHits", equalTo(1))
                 .body("productDTOList.size()", greaterThan(0))
                 .body("productDTOList.brand", hasItems("Puma"))
@@ -104,7 +104,7 @@ public class ProductRestAssuredTest {
                 .post(URL)
                 .then()
                 .statusCode(200)
-                .body("message", equalTo(SearchMessage.FILTERS_REMOVED.getMessage()))
+                .body("message", equalTo(SearchMessage.CATEGORY_ONLY_STRICT_SUCCESS.getMessage()))
                 .body("totalHits", equalTo(4))
                 .body("productDTOList.size()", greaterThan(0))
                 .body("productDTOList.name", hasItems(
@@ -112,6 +112,31 @@ public class ProductRestAssuredTest {
                         "dri-fit running shorts",
                         "cotton chino shorts",
                         "cotton sleep shorts"
+                ));
+    }
+
+    @Test
+    void testSearchOpenAIByText() {
+        String requestBody = """
+                {
+                    "queryText": "Warm outerwear with soft interior for cold weather"
+                }
+                """;
+
+        given()
+                .port(port)
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(URL)
+                .then()
+                .statusCode(200)
+                .body("message", equalTo(SearchMessage.SEARCH_SUCCESS.getMessage()))
+                .body("productDTOList.size()", greaterThan(0))
+                .body("productDTOList.name", hasItems(
+                        "windrunner hooded jacket",
+                        "insulated winter jacket",
+                        "wool oversized coat"
                 ));
     }
 

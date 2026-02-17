@@ -9,6 +9,7 @@ import java.util.List;
 public record ProductDTO(String brand,
                          String name,
                          Double price,
+                         String category,
                          @JsonProperty("skus")
                          List<SkuDTO> skuDTOList) {
 }

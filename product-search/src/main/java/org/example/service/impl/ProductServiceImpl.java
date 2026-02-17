@@ -11,10 +11,11 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.config.EsFieldsConfig;
-import org.example.dto.ConceptDocDTO;
-import org.example.dto.ProductDTO;
-import org.example.dto.ProductRequestDTO;
 import org.example.dto.ProductResponseDTO;
+import org.example.dto.AICandidateDoc;
+import org.example.dto.ConceptDocDTO;
+import org.example.dto.ProductRequestDTO;
+import org.example.dto.ProductDTO;
 import org.example.enums.QueryType;
 import org.example.enums.SearchMessage;
 import org.example.exception.SearchServiceUnavailableException;
@@ -43,6 +44,9 @@ public class ProductServiceImpl implements ProductService {
     private final EsFieldsConfig esFieldsConfig;
 
     private final ProductMapper productMapper;
+
+    private final OpenAIServiceImpl openAIServiceImpl;
+
 
     @Override
     public ProductResponseDTO getSearchProductResponse(ProductRequestDTO productRequestDTO) throws IOException {
@@ -73,15 +77,19 @@ public class ProductServiceImpl implements ProductService {
                 filterQueries,
                 mustQueries,
                 shouldQueries,
-                SearchMessage.STRICT_SUCCESS.getMessage())
+                SearchMessage.SEARCH_SUCCESS)
                 .or(() -> trySearchStage(
-                        QueryType.NO_FILTERS,
+                        QueryType.CATEGORY_ONLY_STRICT_MATCH,
                         productRequestDTO,
                         filterQueries,
                         mustQueries,
                         shouldQueries,
-                        SearchMessage.FILTERS_REMOVED.getMessage()
-                ))
+                        SearchMessage.CATEGORY_ONLY_STRICT_SUCCESS))
+                .or(() -> tryOpenAISearch(
+                        filterQueries,
+                        productRequestDTO,
+                        productNameFieldTokens,
+                        SearchMessage.SEARCH_SUCCESS))
                 .orElse(buildEmptyProductResponseDTO());
     }
 
@@ -92,26 +100,74 @@ public class ProductServiceImpl implements ProductService {
             List<Query> filterQueries,
             List<Query> mustQueries,
             List<Query> shouldQueries,
-            String successMessage
+            SearchMessage searchMessage
     ) {
 
-            ProductResponseDTO response = searchProductByStages(
-                    queryType,
-                    productRequestDTO,
-                    filterQueries,
-                    mustQueries,
-                    shouldQueries
-            );
+        ProductResponseDTO response = searchProductByStages(
+                queryType,
+                productRequestDTO,
+                filterQueries,
+                mustQueries,
+                shouldQueries
+        );
 
-            if (response.getProductDTOList().isEmpty()) {
-                return Optional.empty();
-            }
+        if (response.getProductDTOList().isEmpty()) {
+            return Optional.empty();
+        }
 
-            response.setMessage(successMessage);
-            return Optional.of(response);
+        response.setMessage(searchMessage.getMessage());
+        return Optional.of(response);
     }
 
-    private SearchResponse<ProductDTO> searchProducts(ProductRequestDTO productRequestDTO, Query mainQuery) {
+    private Optional<ProductResponseDTO> tryOpenAISearch(List<Query> filterQueries, ProductRequestDTO productRequestDTO,
+                                                         String userQuery,
+                                                         SearchMessage searchMessage) {
+        List<AICandidateDoc> aiCandidateDocs = getAICandidateDocs(filterQueries, QueryType.AI_SEARCH);
+
+        if (aiCandidateDocs.isEmpty()) {
+            return Optional.empty();
+        }
+
+        List<String> docIdsFromOpenAI = openAIServiceImpl.getDocIdsIOpenAI(userQuery, aiCandidateDocs);
+        ProductResponseDTO productResponseDTO = productMapper.toProductResponseDTO(searchDocsByIds(docIdsFromOpenAI, productRequestDTO));
+
+        if (productResponseDTO.getProductDTOList().isEmpty()) {
+            return Optional.empty();
+        }
+
+        productResponseDTO.setMessage(searchMessage.getMessage());
+        return Optional.of(productResponseDTO);
+    }
+
+    private SearchResponse<ProductDTO> searchDocsByIds(List<String> docIds, ProductRequestDTO productRequestDTO) {
+        Query queryByIds = Query.of(q -> q.ids(ids -> ids.values(docIds)));
+        return searchProductsWithAggregation(productRequestDTO, queryByIds);
+    }
+
+    private List<AICandidateDoc> getAICandidateDocs(
+            List<Query> filterQueries, QueryType queryType) {
+
+        Query queryFiltersForCandidates = QueryUtil.buildQueryByStrategy(
+                queryType,
+                filterQueries,
+                List.of(),
+                List.of(),
+                esFieldsConfig
+        );
+
+        return searchAICandidates(queryFiltersForCandidates)
+                .hits()
+                .hits()
+                .stream()
+                .filter(hit -> Objects.nonNull(hit.source()))
+                .map(hit ->
+                        new AICandidateDoc(hit.id(), hit.source().name()
+                        ))
+                .toList();
+    }
+
+
+    private SearchResponse<ProductDTO> searchProductsWithAggregation(ProductRequestDTO productRequestDTO, Query mainQuery) {
         SearchRequest.Builder searchBuilder = new SearchRequest.Builder()
                 .index(esFieldsConfig.getIndex().getProductIndex())
                 .from(productRequestDTO.from(esFieldsConfig.getRequest().getDefaultQuerySize(), esFieldsConfig.getRequest().getDefaultQueryPage()))
@@ -130,16 +186,30 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    private SearchResponse<ProductDTO> searchAICandidates(Query query) {
+        SearchRequest.Builder searchBuilder = new SearchRequest.Builder()
+                .index(esFieldsConfig.getIndex().getProductIndex())
+                .query(query)
+                .sort(so -> so.score(ss -> ss.order(SortOrder.Desc)));
+
+        try {
+            return elasticsearchClient.search(searchBuilder.build(), ProductDTO.class);
+        } catch (IOException e) {
+            log.error("Search stage failed", e);
+            throw new SearchServiceUnavailableException(e.getMessage());
+        }
+    }
+
     private ProductResponseDTO searchProductByStages(QueryType queryType,
                                                      ProductRequestDTO productRequestDTO,
                                                      List<Query> filterQueries,
                                                      List<Query> mustQueries,
                                                      List<Query> shouldQueries) {
 
-        Query queryByStrategy = QueryUtil.buildQueryByStrategy(queryType, filterQueries, mustQueries, shouldQueries);
+        Query queryByStrategy = QueryUtil.buildQueryByStrategy(queryType, filterQueries, mustQueries, shouldQueries, esFieldsConfig);
         log.info("queryByStrategy: {}", queryByStrategy);
 
-        SearchResponse<ProductDTO> productDTOSearchFirstStage = searchProducts(productRequestDTO, queryByStrategy);
+        SearchResponse<ProductDTO> productDTOSearchFirstStage = searchProductsWithAggregation(productRequestDTO, queryByStrategy);
         return productMapper.toProductResponseDTO(productDTOSearchFirstStage);
     }
 
