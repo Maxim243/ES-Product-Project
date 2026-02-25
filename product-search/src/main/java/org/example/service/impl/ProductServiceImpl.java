@@ -21,7 +21,7 @@ import org.example.enums.SearchMessage;
 import org.example.exception.SearchServiceUnavailableException;
 import org.example.mappers.ProductMapper;
 import org.example.service.ProductService;
-import org.example.utils.QueryUtil;
+import org.example.utils.ProductQueryUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -31,8 +31,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.example.dto.ProductResponseDTO.buildEmptyProductResponseDTO;
-import static org.example.utils.QueryUtil.addBrandAggregation;
-import static org.example.utils.QueryUtil.addPriceRangeAggregation;
+import static org.example.utils.ProductQueryUtil.addBrandAggregation;
+import static org.example.utils.ProductQueryUtil.addPriceRangeAggregation;
 
 @Service
 @RequiredArgsConstructor
@@ -67,9 +67,9 @@ public class ProductServiceImpl implements ProductService {
 
         String productNameFieldTokens = extractProductNameFieldTokens(textQueryInputTerms, conceptDocDTOList);
 
-        List<Query> filterQueries = QueryUtil.createFilterQuery(conceptDocDTOList, esFieldsConfig);
-        List<Query> mustQueries = QueryUtil.createMustQuery(productNameFieldTokens, esFieldsConfig.getFields().getName());
-        List<Query> shouldQueries = QueryUtil.createShouldQuery(productNameFieldTokens, esFieldsConfig.getFields().getNameShingles());
+        List<Query> filterQueries = ProductQueryUtil.createFilterQuery(conceptDocDTOList, esFieldsConfig);
+        List<Query> mustQueries = ProductQueryUtil.createMustQuery(productNameFieldTokens, esFieldsConfig.getFields().getName());
+        List<Query> shouldQueries = ProductQueryUtil.createShouldQuery(productNameFieldTokens, esFieldsConfig.getFields().getNameShingles());
 
         return trySearchStage(
                 QueryType.STRICT,
@@ -147,7 +147,7 @@ public class ProductServiceImpl implements ProductService {
     private List<AICandidateDoc> getAICandidateDocs(
             List<Query> filterQueries, QueryType queryType) {
 
-        Query queryFiltersForCandidates = QueryUtil.buildQueryByStrategy(
+        Query queryFiltersForCandidates = ProductQueryUtil.buildQueryByStrategy(
                 queryType,
                 filterQueries,
                 List.of(),
@@ -206,7 +206,7 @@ public class ProductServiceImpl implements ProductService {
                                                      List<Query> mustQueries,
                                                      List<Query> shouldQueries) {
 
-        Query queryByStrategy = QueryUtil.buildQueryByStrategy(queryType, filterQueries, mustQueries, shouldQueries, esFieldsConfig);
+        Query queryByStrategy = ProductQueryUtil.buildQueryByStrategy(queryType, filterQueries, mustQueries, shouldQueries, esFieldsConfig);
         log.info("queryByStrategy: {}", queryByStrategy);
 
         SearchResponse<ProductDTO> productDTOSearchFirstStage = searchProductsWithAggregation(productRequestDTO, queryByStrategy);

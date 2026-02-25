@@ -58,6 +58,7 @@ public class EsFieldsConfig {
     @Data
     public static class Index {
         private String productIndex;
+        private String autoPartIndex;
         private String conceptIndex;
         private String searchTerms;
     }

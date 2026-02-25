@@ -29,6 +29,7 @@ elasticsearch:
     cheapPrice: 100.0
     expensivePrice: 500.0
   index:
+    autoPartIndex: autopart_index
     productIndex: product_index
     conceptIndex: concept_index
     searchTerms: search_terms

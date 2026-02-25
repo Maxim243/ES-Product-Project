@@ -8,9 +8,9 @@ elasticsearch:
     password: ${ES_PASS:}
   index:
     index: _index
-    indexName: ${ES_INDEX:product_index}
+    indexName: ${ES_INDEX:autopart_index}
     indicesAmount: ${ES_INDICES_COUNT:3}
   file:
-    mappings: classpath:products/mappings.json
-    settings: classpath:products/settings.json
-    bulkData: classpath:products/bulk_data.txt
+    mappings: classpath:autoparts/mappings.json
+    settings: classpath:autoparts/settings.json
+    bulkData: classpath:autoparts/bulk_data.txt

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @UtilityClass
-public class QueryUtil {
+public class ProductQueryUtil {
 
     public static void buildMainFilters(List<ConceptDocDTO> conceptDocDTOList,
                                         List<Query> filterQueries,

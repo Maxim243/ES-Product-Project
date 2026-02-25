@@ -1,0 +1,182 @@
+{"create": {"_id": "1"}}
+{"sku": "12345", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 7, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "2"}}
+{"sku": "12346", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 7, "engineId": 11, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "3"}}
+{"sku": "12347", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 8, "engineId": 10, "bodyTypeId": 4, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "4"}}
+{"sku": "12348", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 7, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "5"}}
+{"sku": "12349", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 8, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "6"}}
+{"sku": "12350", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 7, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "7"}}
+{"sku": "12351", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 8, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "8"}}
+{"sku": "12352", "partGroupId": 15, "partName": "Brake Pads Rear Premium", "brandId": 1, "modelId": 4, "yearId": 9, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "9"}}
+{"sku": "12353", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 9, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "10"}}
+{"sku": "12354", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 8, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "11"}}
+{"sku": "12355", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 9, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "12"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 10, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "13"}}
+{"sku": "12357", "partGroupId": 10, "partName": "Brake Pads Front Standard", "brandId": 1, "modelId": 4, "yearId": 7, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "14"}}
+{"sku": "12358", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 8, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "15"}}
+{"sku": "12359", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 9, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "16"}}
+{"sku": "12360", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 10, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "17"}}
+{"sku": "12361", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 11, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "18"}}
+{"sku": "12362", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 9, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "19"}}
+{"sku": "12363", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 10, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "20"}}
+{"sku": "12364", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 11, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "21"}}
+{"sku": "12365", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 11, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 6}
+{"create": {"_id": "22"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 12, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "23"}}
+{"sku": "12367", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 10, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "24"}}
+{"sku": "12368", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 11, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "25"}}
+{"sku": "12369", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 12, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "26"}}
+{"sku": "12370", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 12, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "27"}}
+{"sku": "12371", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 13, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "28"}}
+{"sku": "12372", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 11, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "29"}}
+{"sku": "12373", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 12, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "30"}}
+{"sku": "12374", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 13, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "31"}}
+{"sku": "12375", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 13, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "32"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 14, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "33"}}
+{"sku": "12377", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 12, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "34"}}
+{"sku": "12378", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 13, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "35"}}
+{"sku": "12379", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 14, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "36"}}
+{"sku": "12380", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 14, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "37"}}
+{"sku": "12381", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 15, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "38"}}
+{"sku": "12352", "partGroupId": 10, "partName": "Brake Pads Rear Premium", "brandId": 1, "modelId": 4, "yearId": 12, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "39"}}
+{"sku": "12383", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 14, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "40"}}
+{"sku": "12384", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 15, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "41"}}
+{"sku": "12385", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 15, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "42"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 16, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "43"}}
+{"sku": "12387", "partGroupId": 10, "partName": "Brake Pads Front Standard", "brandId": 1, "modelId": 4, "yearId": 13, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "44"}}
+{"sku": "12388", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 14, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "45"}}
+{"sku": "12389", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 15, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "46"}}
+{"sku": "12390", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 15, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 138, "lightingId": 2}
+{"create": {"_id": "47"}}
+{"sku": "12391", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 16, "engineId": 15, "bodyTypeId": 10, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "48"}}
+{"sku": "12392", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 13, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "49"}}
+{"sku": "12393", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 15, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "50"}}
+{"sku": "12394", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 16, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "51"}}
+{"sku": "12395", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 16, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "52"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 17, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "53"}}
+{"sku": "12397", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 14, "engineId": 10, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "54"}}
+{"sku": "12398", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 15, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "55"}}
+{"sku": "12399", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 16, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "56"}}
+{"sku": "12400", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 16, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "57"}}
+{"sku": "12401", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 17, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "58"}}
+{"sku": "12402", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 15, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "59"}}
+{"sku": "12403", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 16, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "60"}}
+{"sku": "12404", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 17, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "61"}}
+{"sku": "12405", "partGroupId": 15, "partName": "Fuel Pump Standard", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 17, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 16, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "62"}}
+{"sku": "12406", "partGroupId": 16, "partName": "Radiator Premium", "brandId": 4, "modelId": 7, "yearId": 19, "engineId": 18, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 17, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "63"}}
+{"sku": "12352", "partGroupId": 10, "partName": "Brake Pads Rear Premium", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 11, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "64"}}
+{"sku": "12408", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 19, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "65"}}
+{"sku": "12409", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 20, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "66"}}
+{"sku": "12410", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "67"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 19, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "68"}}
+{"sku": "12412", "partGroupId": 15, "partName": "Fuel Pump Premium", "brandId": 3, "modelId": 6, "yearId": 20, "engineId": 17, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 16, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "69"}}
+{"sku": "12413", "partGroupId": 16, "partName": "Radiator Standard", "brandId": 4, "modelId": 7, "yearId": 18, "engineId": 18, "bodyTypeId": 4, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 17, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "70"}}
+{"sku": "12414", "partGroupId": 10, "partName": "Brake Pads Front Standard", "brandId": 1, "modelId": 4, "yearId": 20, "engineId": 11, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "71"}}
+{"sku": "12407", "partGroupId": 10, "partName": "Brake Pads Front Premium", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "72"}}
+{"sku": "12408", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "73"}}
+{"sku": "12409", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "74"}}
+{"sku": "12410", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "75"}}
+{"sku": "12411", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "76"}}
+{"sku": "12352", "partGroupId": 10, "partName": "Brake Pads Rear Premium", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "77"}}
+{"sku": "12413", "partGroupId": 10, "partName": "Brake Pads Front Standard", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 10, "bodyTypeId": 3, "transmissionId": 2, "fuelTypeId": 1, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "78"}}
+{"sku": "12414", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "79"}}
+{"sku": "12415", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "80"}}
+{"sku": "12416", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "81"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "82"}}
+{"sku": "12418", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "83"}}
+{"sku": "12408", "partGroupId": 11, "partName": "Air Filter Standard", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "84"}}
+{"sku": "12409", "partGroupId": 12, "partName": "Oil Filter Premium", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "85"}}
+{"sku": "12410", "partGroupId": 13, "partName": "Spark Plug Standard", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 6}
+{"create": {"_id": "86"}}
+{"sku": "12411", "partGroupId": 14, "partName": "Clutch Kit Premium", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}
+{"create": {"_id": "87"}}
+{"sku": "12412", "partGroupId": 10, "partName": "Brake Pads Rear Standard", "brandId": 1, "modelId": 4, "yearId": 18, "engineId": 16, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 14, "brakeSystemId": 6, "drivetrainId": 2, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "88"}}
+{"sku": "12413", "partGroupId": 11, "partName": "Air Filter Premium", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 12, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 13, "brakeSystemId": 4, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 2, "coolingId": 3, "lightingId": 2}
+{"create": {"_id": "89"}}
+{"sku": "12414", "partGroupId": 12, "partName": "Oil Filter Standard", "brandId": 2, "modelId": 5, "yearId": 18, "engineId": 13, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 1, "suspensionId": 3, "wheelDriveId": 2, "steeringId": 1, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 1}
+{"create": {"_id": "90"}}
+{"sku": "12415", "partGroupId": 13, "partName": "Spark Plug Premium", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 14, "bodyTypeId": 3, "transmissionId": 1, "fuelTypeId": 1, "hoodId": 15, "brakeSystemId": 6, "drivetrainId": 1, "suspensionId": 2, "wheelDriveId": 1, "steeringId": 2, "absId": 1, "airbagId": 2, "exhaustId": 3, "coolingId": 4, "lightingId": 2}
+{"create": {"_id": "91"}}
+{"sku": "12356", "partGroupId": 14, "partName": "Clutch Kit Standard", "brandId": 3, "modelId": 6, "yearId": 18, "engineId": 15, "bodyTypeId": 4, "transmissionId": 2, "fuelTypeId": 2, "hoodId": 12, "brakeSystemId": 5, "drivetrainId": 2, "suspensionId": 3, "wheelDriveId": 1, "steeringId": 1, "absId": 1, "airbagId": 1, "exhaustId": 4, "coolingId": 5, "lightingId": 3}

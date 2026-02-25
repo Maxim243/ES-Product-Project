@@ -1,0 +1,67 @@
+{
+  "properties": {
+    "sku": {
+      "type": "keyword"
+    },
+    "partGroupId": {
+      "type": "integer"
+    },
+    "partName": {
+      "type": "keyword"
+    },
+    "brandId": {
+      "type": "integer"
+    },
+    "modelId": {
+      "type": "integer"
+    },
+    "yearId": {
+      "type": "integer"
+    },
+    "engineId": {
+      "type": "integer"
+    },
+    "bodyTypeId": {
+      "type": "integer"
+    },
+    "transmissionId": {
+      "type": "integer"
+    },
+    "fuelTypeId": {
+      "type": "integer"
+    },
+    "hoodId": {
+      "type": "integer"
+    },
+    "brakeSystemId": {
+      "type": "integer"
+    },
+    "drivetrainId": {
+      "type": "integer"
+    },
+    "suspensionId": {
+      "type": "integer"
+    },
+    "wheelDriveId": {
+      "type": "integer"
+    },
+    "steeringId": {
+      "type": "integer"
+    },
+    "absId": {
+      "type": "integer"
+    },
+    "airbagId": {
+      "type": "integer"
+    },
+    "exhaustId": {
+      "type": "integer"
+    },
+    "coolingId": {
+      "type": "integer"
+    },
+    "lightingId": {
+      "type": "integer"
+    }
+  }
+}
